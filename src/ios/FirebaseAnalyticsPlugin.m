@@ -78,4 +78,23 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+// adapted from from https://github.com/dpa99c/cordova-plugin-firebasex
+- (void)setAnalyticsConsentMode:(CDVInvokedUrlCommand*)command {
+    NSDictionary* consentObject = [command.arguments objectAtIndex:0];
+    NSMutableDictionary* consentSettings = [[NSMutableDictionary alloc] init];
+    NSEnumerator *enumerator = [consentObject keyEnumerator];
+    id key;
+
+    while ((key = [enumerator nextObject])) {
+        NSString* consentType = [self consentTypeFromString:key];
+        NSString* consentStatus = [self consentStatusFromString:[consentObject objectForKey:key]];
+        [consentSettings setObject:consentStatus forKey:consentType];
+    }
+
+    [FIRAnalytics setConsent:consentSettings];
+
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 @end

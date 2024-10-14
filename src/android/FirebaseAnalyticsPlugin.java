@@ -8,6 +8,8 @@ import by.chemerisuk.cordova.support.CordovaMethod;
 import by.chemerisuk.cordova.support.ReflectiveCordovaPlugin;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.analytics.FirebaseAnalytics.ConsentType;
+import com.google.firebase.analytics.FirebaseAnalytics.ConsentStatus;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaArgs;
@@ -111,5 +113,22 @@ public class FirebaseAnalyticsPlugin extends ReflectiveCordovaPlugin {
         }
 
         return bundle;
+    }
+
+    // adapted from from https://github.com/dpa99c/cordova-plugin-firebasex
+    protected void setAnalyticsConsentMode(Cordova args CallbackContext callbackContext)  {
+        JSONObject consent = args.getJSONObject(0);
+        Map<ConsentType, ConsentStatus> consentMap = new EnumMap<>(ConsentType.class);
+        Iterator<String> keys = consent.keys();
+
+        while (keys.hasNext()) {
+            String key = keys.next();
+            ConsentType consentType = ConsentType.valueOf(key);
+            ConsentStatus consentStatus = ConsentStatus.valueOf(consent.getString(key));
+            consentMap.put(consentType, consentStatus);
+        }
+
+        firebaseAnalytics.setConsent(consentMap);
+        callbackContext.success();
     }
 }

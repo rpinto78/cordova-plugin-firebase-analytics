@@ -117,3 +117,39 @@ function(defaults) {
         exec(resolve, reject, PLUGIN_NAME, "setDefaultEventParameters", [defaults || {}]);
     });
 };
+
+// adapted from from https://github.com/dpa99c/cordova-plugin-firebasex
+exports.AnalyticsConsentMode = {
+    ANALYTICS_STORAGE: "ANALYTICS_STORAGE",
+    AD_STORAGE: "AD_STORAGE",
+    AD_USER_DATA: "AD_USER_DATA",
+    AD_PERSONALIZATION: "AD_PERSONALIZATION"
+};
+
+exports.AnalyticsConsentStatus = {
+    GRANTED: "GRANTED",
+    DENIED: "DENIED"
+};
+
+exports.setAnalyticsConsentMode =
+/**
+ * Sets the user's consent mode status for various types of data collection in the application. This includes consent for analytics data storage, ad storage, ad personalization, and ad user data. The consent status can be set to 'GRANTED' or 'DENIED
+ * @param {object} consents  map of the consent modes as AnalyticsConsentMode and their status as AnalyticsConsentStatus
+ * @returns {Promise<void>} Callback when operation is completed
+ * 
+ * @example
+ * var FirebasePlugin = cordova.plugins.firebase.analytics;
+ * var consents = {};
+ * 
+ * consents[FirebasePlugin.AnalyticsConsentMode.ANALYTICS_STORAGE] = FirebasePlugin.AnalyticsConsentStatus.GRANTED;
+ * consents[FirebasePlugin.AnalyticsConsentMode.AD_STORAGE] = FirebasePlugin.AnalyticsConsentStatus.GRANTED;
+ * consents[FirebasePlugin.AnalyticsConsentMode.AD_USER_DATA] = FirebasePlugin.AnalyticsConsentStatus.GRANTED;
+ * consents[FirebasePlugin.AnalyticsConsentMode.AD_PERSONALIZATION] = FirebasePlugin.AnalyticsConsentStatus.DENIED;
+ * 
+ * FirebasePlugin.setAnalyticsConsentMode(consents);
+ */
+function(consent) {
+    return new Promise(function(resolve, reject) {
+        exec(resolve, reject, PLUGIN_NAME, "setAnalyticsConsentMode", [consent]);
+    });
+}

@@ -9,5 +9,7 @@
 - (void)setCurrentScreen:(CDVInvokedUrlCommand*)command;
 - (void)resetAnalyticsData:(CDVInvokedUrlCommand*)command;
 - (void)setDefaultEventParameters:(CDVInvokedUrlCommand*)command;
+// adapted from from https://github.com/dpa99c/cordova-plugin-firebasex
+- (void)setAnalyticsConsentMode:(CDVInvokedUrlCommand*)command;
 
 @end
