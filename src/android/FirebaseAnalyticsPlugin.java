@@ -116,7 +116,7 @@ public class FirebaseAnalyticsPlugin extends ReflectiveCordovaPlugin {
     }
 
     // adapted from from https://github.com/dpa99c/cordova-plugin-firebasex
-    protected void setAnalyticsConsentMode(Cordova args CallbackContext callbackContext)  {
+    protected void setAnalyticsConsentMode(CordovaArgs args, CallbackContext callbackContext)  {
         JSONObject consent = args.getJSONObject(0);
         Map<ConsentType, ConsentStatus> consentMap = new EnumMap<>(ConsentType.class);
         Iterator<String> keys = consent.keys();
