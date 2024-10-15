@@ -19,6 +19,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.EnumMap;
 
 public class FirebaseAnalyticsPlugin extends ReflectiveCordovaPlugin {
     private static final String TAG = "FirebaseAnalyticsPlugin";
@@ -116,7 +118,8 @@ public class FirebaseAnalyticsPlugin extends ReflectiveCordovaPlugin {
     }
 
     // adapted from from https://github.com/dpa99c/cordova-plugin-firebasex
-    protected void setAnalyticsConsentMode(CordovaArgs args, CallbackContext callbackContext)  {
+    @CordovaMethod
+    protected void setAnalyticsConsentMode(CordovaArgs args, CallbackContext callbackContext) throws JSONException {
         JSONObject consent = args.getJSONObject(0);
         Map<ConsentType, ConsentStatus> consentMap = new EnumMap<>(ConsentType.class);
         Iterator<String> keys = consent.keys();

@@ -41,7 +41,7 @@
 
 ## Installation
 
-    $ cordova plugin add cordova-plugin-firebase-analytics
+    $ cordova plugin add github:rpinto/cordova-plugin-firebase-analytics
 
 If you get an error about CocoaPods being unable to find compatible versions, run
     
