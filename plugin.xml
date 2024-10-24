@@ -30,7 +30,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 	<preference name="GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS" default="true" />
 
     <platform name="ios">
-        <preference name="IOS_FIREBASE_POD_VERSION" default="10.17.0" />
+        <preference name="IOS_FIREBASE_POD_VERSION" default="10.29.0" />
 
         <config-file target="config.xml" parent="/*">
             <feature name="FirebaseAnalytics">
@@ -77,7 +77,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     </platform>
 
     <platform name="android">
-        <preference name="ANDROID_FIREBASE_BOM_VERSION" default="32.5.0" />
+        <preference name="ANDROID_FIREBASE_BOM_VERSION" default="33.5.0" />
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="FirebaseAnalytics">

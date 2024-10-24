@@ -97,4 +97,28 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+- (NSString*)consentTypeFromString:(NSString*)consentTypeString {
+    if ([consentTypeString isEqualToString:@"ANALYTICS_STORAGE"]) {
+        return FIRConsentTypeAnalyticsStorage;
+    } else if ([consentTypeString isEqualToString:@"AD_STORAGE"]) {
+        return FIRConsentTypeAdStorage;
+    } else if ([consentTypeString isEqualToString:@"AD_PERSONALIZATION"]) {
+        return FIRConsentTypeAdPersonalization;
+    } else if ([consentTypeString isEqualToString:@"AD_USER_DATA"]) {
+        return FIRConsentTypeAdUserData;
+    } else {
+        return nil;
+    }
+}
+
+- (NSString*)consentStatusFromString:(NSString*)consentStatusString {
+    if ([consentStatusString isEqualToString:@"GRANTED"]) {
+        return FIRConsentStatusGranted;
+    } else if ([consentStatusString isEqualToString:@"DENIED"]) {
+        return FIRConsentStatusDenied;
+    } else {
+        return nil;
+    }
+}
+
 @end
